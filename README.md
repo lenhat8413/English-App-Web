@@ -1,77 +1,179 @@
+# 🌐 English App Web
 
-# React + TypeScript + Vite
+## 🚀 Tính năng mới: Dịch Thuật Thông Minh
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### ✨ Các tính năng đã được tích hợp:
 
-Currently, two official plugins are available:
+#### 🌐 **Translation System**
+- **Dịch Anh → Việt**: Dịch văn bản từ tiếng Anh sang tiếng Việt
+- **Dịch Việt → Anh**: Dịch văn bản từ tiếng Việt sang tiếng Anh  
+- **Dịch đa ngôn ngữ**: Hỗ trợ nhiều ngôn ngữ khác nhau
+- **Lịch sử dịch thuật**: Lưu trữ và quản lý lịch sử dịch
+- **Tích hợp từ vựng**: Dịch từ vựng trong quá trình học
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### 🎨 **Giao diện cải tiến**
+- **Tailwind CSS**: Giao diện hiện đại, responsive
+- **Gradient backgrounds**: Thiết kế đẹp mắt
+- **Interactive components**: Tương tác mượt mà
+- **Mobile-friendly**: Tối ưu cho mọi thiết bị
 
-## React Compiler
+## 🛠️ Cài đặt và chạy
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Yêu cầu hệ thống:
+- Node.js >= 18
+- npm hoặc yarn
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Cài đặt:
+```bash
+cd english-app-web
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Chạy development:
+```bash
+npm run dev
 ```
-=======
-# english-app-web
-Web
+
+### Build production:
+```bash
+npm run build
+```
+
+## 📱 Tích hợp Mobile App
+
+### Mobile App Features:
+- **Translation Screen**: Màn hình dịch thuật đầy đủ
+- **Vocabulary Integration**: Tích hợp dịch thuật vào học từ vựng
+- **History Tracking**: Theo dõi lịch sử dịch thuật
+- **Offline Support**: Hỗ trợ dịch thuật offline
+
+### API Endpoints:
+```
+POST /api/translation/en-to-vi     # Dịch Anh → Việt
+POST /api/translation/vi-to-en     # Dịch Việt → Anh
+POST /api/translation/custom       # Dịch tùy chỉnh
+GET  /api/translation/languages    # Ngôn ngữ hỗ trợ
+POST /api/translation/vocab        # Dịch từ vựng (auth)
+GET  /api/translation/history      # Lịch sử dịch (auth)
+```
+
+## 🎯 Cách sử dụng
+
+### 1. Dịch thuật cơ bản:
+```javascript
+// Dịch Anh → Việt
+const result = await TranslationAPI.translateEnToVi("Hello world");
+
+// Dịch Việt → Anh  
+const result = await TranslationAPI.translateViToEn("Xin chào thế giới");
+```
+
+### 2. Dịch từ vựng:
+```javascript
+// Dịch từ vựng với authentication
+const result = await TranslationAPI.translateVocab("hello", "en", "vi");
+```
+
+### 3. Lấy lịch sử:
+```javascript
+// Lấy lịch sử dịch thuật
+const history = await TranslationAPI.getTranslationHistory({
+  page: 1,
+  limit: 20
+});
+```
+
+## 🔧 Cấu hình
+
+### Environment Variables:
+```env
+VITE_API_BASE_URL=http://localhost:4000
+VITE_APP_NAME=English Learning App
+```
+
+### Tailwind Configuration:
+- Custom colors và fonts
+- Responsive design
+- Dark mode support
+- Custom animations
+
+## 📊 Tính năng nổi bật
+
+### 🌐 Translation Features:
+- ✅ Dịch Anh-Việt & Việt-Anh
+- ✅ Hỗ trợ đa ngôn ngữ
+- ✅ Lưu lịch sử dịch thuật
+- ✅ Tích hợp với từ vựng
+- ✅ Real-time translation
+- ✅ Offline fallback
+
+### 🎨 UI/UX Improvements:
+- ✅ Modern Tailwind CSS design
+- ✅ Responsive layout
+- ✅ Interactive animations
+- ✅ Mobile-first approach
+- ✅ Accessibility support
+- ✅ Dark/Light mode ready
+
+### 🔗 Integration:
+- ✅ Mobile app integration
+- ✅ Backend API integration
+- ✅ Real-time updates
+- ✅ Authentication support
+- ✅ Role-based access
+
+## 🚀 Deployment
+
+### Production Build:
+```bash
+npm run build
+```
+
+### Serve Static Files:
+```bash
+npm run preview
+```
+
+### Docker Support:
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "run", "preview"]
+```
+
+## 📱 Mobile App Integration
+
+### Flutter Features:
+- **TranslationService**: API service cho dịch thuật
+- **TranslationScreen**: Màn hình dịch thuật đầy đủ
+- **Vocabulary Integration**: Tích hợp vào học từ vựng
+- **History Management**: Quản lý lịch sử dịch
+
+### API Integration:
+```dart
+// Dịch thuật cơ bản
+final result = await TranslationService.translateEnToVi("Hello");
+
+// Dịch từ vựng
+final result = await TranslationService.translateVocab("hello", "en", "vi");
+
+// Lấy lịch sử
+final history = await TranslationService.getTranslationHistory();
+```
+
+## 🎉 Kết quả
+
+Hệ thống English App đã được nâng cấp hoàn chỉnh với:
+
+- ✅ **Backend**: Translation APIs với LibreTranslate + MyMemory fallback
+- ✅ **Mobile**: Flutter app với translation features
+- ✅ **Web**: React app với modern UI/UX
+- ✅ **Integration**: Seamless integration giữa các platform
+- ✅ **User Experience**: Intuitive và user-friendly
+
+Hệ thống sẵn sàng cho production và có thể mở rộng thêm nhiều tính năng khác! 🚀

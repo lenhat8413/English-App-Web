@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/http';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Login() {
   const [email, setEmail] = useState('admin@example.com'); // tiện test
@@ -8,6 +8,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -15,16 +16,18 @@ export default function Login() {
     setLoading(true);
     
     try {
-      const { data } = await api.post('/auth/login', { email, password });
-      localStorage.setItem('accessToken', data.accessToken);
-      localStorage.setItem('refreshToken', data.refreshToken);
+      const loginData = await login(email, password);
       
       // Redirect based on user role
-      const userRole = data.user.role;
-      if (userRole === 'ADMIN' || userRole === 'TEACHER') {
-        navigate('/progress'); // Admin/Teacher go to progress dashboard
+      const userRole = loginData.user?.role;
+      if (userRole === 'ADMIN') {
+        navigate('/admin');
+      } else if (userRole === 'TEACHER') {
+        navigate('/teacher');
       } else {
-        navigate('/'); // Students go to profile (will show mobile app message)
+        // Students are not allowed - show message
+        setError('Students không được phép truy cập web interface. Vui lòng sử dụng mobile app.');
+        return;
       }
     } catch (err: any) {
       setError(err?.response?.data?.error?.message || 'Đăng nhập thất bại');

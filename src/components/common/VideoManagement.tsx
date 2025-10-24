@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api from '../api/http';
+import api from '../../api/http';
 
 interface Video {
   id: string;
@@ -42,7 +42,7 @@ export default function VideoManagement() {
     setLoading(true);
     setError(null);
     try {
-      const { data } = await api.get('/videos');
+      const { data } = await api.get('/api/videos');
       setVideos(data.videos);
     } catch (err: any) {
       setError(err?.response?.data?.error?.message || 'Failed to fetch videos');
@@ -68,9 +68,9 @@ export default function VideoManagement() {
       };
 
       if (selectedVideo) {
-        await api.put(`/videos/${selectedVideo.id}`, videoData);
+        await api.put(`/api/videos/${selectedVideo.id}`, videoData);
       } else {
-        await api.post('/videos', videoData);
+        await api.post('/api/videos', videoData);
       }
 
       resetForm();
@@ -98,7 +98,7 @@ export default function VideoManagement() {
     if (!confirm('Are you sure you want to delete this video?')) return;
 
     try {
-      await api.delete(`/videos/${videoId}`);
+      await api.delete(`/api/videos/${videoId}`);
       fetchVideos();
     } catch (err: any) {
       setError('Failed to delete video');
@@ -398,6 +398,8 @@ export default function VideoManagement() {
     </div>
   );
 }
+
+
 
 
 

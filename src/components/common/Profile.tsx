@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/http';
+import api from '../../api/http';
 
 export default function Profile() {
   const [data, setData] = useState<any>(null);
@@ -9,7 +9,7 @@ export default function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get('/protected/me')
+    api.get('/api/protected/me')
       .then(res => {
         setData(res.data);
         setLoading(false);

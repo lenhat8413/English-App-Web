@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/http';
+import api from "../../api/http";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -44,7 +44,7 @@ export default function Register() {
     setLoading(true);
     
     try {
-      const { data } = await api.post('/auth/register', {
+      const { data } = await api.post('/api/auth/register', {
         email: formData.email,
         password: formData.password,
         nickname: formData.nickname || undefined

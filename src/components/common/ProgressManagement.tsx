@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api from '../api/http';
+import api from '../../api/http';
 
 interface StudentProgress {
   user: {
@@ -48,7 +48,7 @@ export default function ProgressManagement() {
     setLoading(true);
     setError(null);
     try {
-      const { data } = await api.get('/progress/all');
+      const { data } = await api.get('/api/reports/progress/all');
       setStudents(data.students);
     } catch (err: any) {
       setError(err?.response?.data?.error?.message || 'Failed to fetch progress');
@@ -61,7 +61,7 @@ export default function ProgressManagement() {
     setLoading(true);
     setError(null);
     try {
-      const { data } = await api.get(`/progress/users/${userId}`);
+      const { data } = await api.get(`/api/reports/progress/users/${userId}`);
       setSelectedUser(data);
     } catch (err: any) {
       setError(err?.response?.data?.error?.message || 'Failed to fetch user progress');
@@ -334,6 +334,8 @@ export default function ProgressManagement() {
     </div>
   );
 }
+
+
 
 
 
